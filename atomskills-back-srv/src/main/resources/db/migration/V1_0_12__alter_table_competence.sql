@@ -1,0 +1,1 @@
+ALTER TABLE competence ADD COLUMN user_name varchar(300);

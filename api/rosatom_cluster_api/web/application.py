@@ -27,6 +27,10 @@ def get_app() -> FastAPI:
     {
         "name": "clusterization",
         "description": "Операции кластеризации.",
+        "externalDocs": {
+            "description": "Документация по квалификациям",
+            "url": "https://rosatom2023-api.kovalev.team/swagger-ui/index.html#/qualification-controller/findByType",
+        },
     },
     {
         "name": "predict",

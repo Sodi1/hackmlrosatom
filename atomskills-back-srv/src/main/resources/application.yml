@@ -1,0 +1,63 @@
+server:
+  port: 8900
+spring:
+  application:
+    name: rosatom-service
+  flyway:
+    placeholders:
+      db: ${DB_NAME:rsatom}
+      schema: rsatom
+      user: ${DB_USER:postgres}
+    out-of-order: ${FLYWAY_OUT_OF_ORDER:false}
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:rsatom}?currentSchema=${DB_SCHEMA:rsatom}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:example}
+
+
+  jpa:
+    properties:
+      hibernate.default_schema: ${DB_SCHEMA:rsatom}
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: ${JPA_SHOW_SQL:true}
+
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    org.springframework: info
+    org.hibernate: error
+  file:
+    name: /log/rosatom-service.log
+  logback:
+    rollingpolicy:
+      clean-history-on-start: true
+      max-file-size: 1000MB
+
+openapi:
+  info:
+    title: Backend for rosatom hackaton
+    version: 1.0.0
+    contact:
+      name: Kvashnin Denis
+      email: denis.kvashnin.1994@yandex.ru
+    tags:
+      name: Rosatom
+      description: Backend for rosatom hackaton
+      externalDocs:
+        description: 16k20
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+      base-path: /actuator
+
+rest:
+  clusterApiCommunicationService:
+    url: https://atomskills-cluster-api.kovalev.team/api

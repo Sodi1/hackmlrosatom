@@ -1,10 +1,13 @@
 # Система для аналитики данных проведения чемпионата по AtomSkills
 
+Ссылка на прототип: [https://atomskills.kovalev.team/](url)
 
 Описания проектов находятся в корне папок, в проектах, в файлах Readme.md.
 
-**Backend** - python3, eo-learn, Java 11, Spring Boot, Liquibase (миграции БД), ehcache(in-memory cache), 
+**Backend** -  Java 11, Spring Boot, ehcache(in-memory cache)
 
-**Frontend** - vue
+**Frontend** - vue.js
 
-**analytics** - python3
+**analytics** - ноутбуки jupiter с кластеризацией и генерацией выводов по компетенциям чемпионата, python3
+
+**api** - python3, fastapi,redis, rabbitMQ, SQLalchemy

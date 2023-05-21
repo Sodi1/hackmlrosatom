@@ -42,7 +42,6 @@ class Settings(BaseSettings):
 
     # Variables for the database
     # TODO: прописать конфиг нашего постгреса
-    # db_host: str = "localhost"
     db_host: str = "host.docker.internal"
     db_port: int = 5432
     db_user: str = "postgres"

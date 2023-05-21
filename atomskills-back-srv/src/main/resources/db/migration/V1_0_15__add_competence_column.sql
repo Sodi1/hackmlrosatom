@@ -1,0 +1,1 @@
+ALTER TABLE competence ADD COLUMN teams character varying;

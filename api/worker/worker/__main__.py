@@ -6,13 +6,18 @@ from datetime import datetime
 from aio_pika import connect_robust
 from aio_pika.patterns import RPC
 
-from worker.worker.data_processing import process_data
+from worker.data_processing import process_data, process_competence
 
 from yarl import URL
 
-def clusterization_wrapper(*, data):
-    response = process_data(data)
-    return response.dict()
+def clusterization_wrapper(*, cluster_type, uid, data, competence_data):
+    if cluster_type == 'regular':
+        response = process_data(data)
+    elif cluster_type == 'competence':
+        response = process_competence(uid, data, competence_data)
+    else:
+        response = {'status' 'empty request'}
+    return response
 
 
 async def main() -> None:

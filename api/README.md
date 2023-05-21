@@ -49,18 +49,31 @@ docker-compose -f deploy/docker-compose.yml --project-directory . build
 
 ```bash
 $ tree "rosatom_cluster_api"
-rosatom_cluster_api
-├── conftest.py  # Fixtures for all tests.
-├── __main__.py  # Startup script. Starts uvicorn.
-├── services  # Package for different external services such as rabbit or redis etc.
-├── settings.py  # Main configuration settings for project.
-├── static  # Static content.
-├── tests  # Tests for project.
-└── web  # Package contains web server. Handlers, startup config.
-    ├── api  # Package with all handlers.
-    │   └── router.py  # Main router.
-    ├── application.py  # FastAPI application configuration.
-    └── lifetime.py  # Contains actions to perform on startup and shutdown.
+├── deploy
+│   ├── api  # Dockerfile for API.
+│   └── worker  # Dockerfile for worker.
+├── rosatom_cluster_api
+│   ├── __main__.py  # Startup API. Starts uvicorn.
+│   ├── conftest.py  # Fixtures for all tests.
+│   ├── services  # Package for different external services such as RabbitMQ or Redis etc.
+│   │   ├── rabbit  # RabbitMQ integration.
+│   │   └── redis  # Redis integration.
+│   ├── settings.py  # Main configuration settings for project.
+│   ├── static  # Static content.
+│   ├── tests  # Tests for API project.
+│   └── web  # Package contains web server. Handlers, startup config.
+│       ├── api  # Package with all handlers.
+│       │   ├── docs  # Swagger docs.
+│       │   ├── monitoring  # Healthcheck endpoint.
+│       │   ├── clasterization  # Clasterization endpoints.
+│       │   └── router.py  # Main router.
+│       ├── application.py  # FastAPI application configuration.
+│       └── lifetime.py  # Contains actions to perform on startup and shutdown.
+└── worker
+    ├── tests  # Tests for project.
+    └── worker  # Tests for worker.
+        ├── __main__.py  # Startup worker.
+        └── data_processing.py  # Functions for clasterization.
 ```
 
 ## Configuration

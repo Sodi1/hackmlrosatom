@@ -1,0 +1,1 @@
+ALTER TABLE competence ADD COLUMN is_team boolean;
